@@ -9,50 +9,89 @@
 </head>
 <body>
 
-    <!-- Khung chính giả lập màn hình điện thoại -->
+    <!-- Khung giả lập màn hình điện thoại -->
     <div class="phone-container">
         
         <!-- 1. MÀN HÌNH BẮT ĐẦU -->
-        <div class="game-screen active" id="screen-start">
+        <div class="game-screen active" id="manBatsuDau">
             <div class="hero-content">
                 <h1>HỒ SƠ MẤT TÍCH</h1>
                 <p class="subtitle">4 nốt nhạc tử thần</p>
-                <button class="btn-primary" onclick="switchScreen('screen-main')">BẮT ĐẦU</button>
+                
+                <button class="btn-action btn-green" onclick="switchScreen('manChinh')">▶ BẮT ĐẦU</button>
+                <button class="btn-action btn-green" onclick="switchScreen('manDangNhap')">👤 NGƯỜI DÙNG</button>
+                
+                <p class="tip-text">💡 Mẹo: Thêm vào màn hình chính để chơi<br>Bấm vào người dùng để đăng nhập hoặc đăng kí tài khoản</p>
             </div>
         </div>
 
-        <!-- 2. MÀN HÌNH CHÍNH (GAME BOARD) -->
-        <div class="game-screen" id="screen-main">
+        <!-- 2. MÀN HÌNH ĐĂNG NHẬP / ĐĂNG KÍ -->
+        <div class="game-screen" id="manDangNhap">
+            <div class="auth-box">
+                <h2>HỒ SƠ MẤT TÍCH</h2>
+                <div class="form-group">
+                    <label>Tài khoản:</label>
+                    <input type="text" placeholder="Nhập tài khoản...">
+                </div>
+                <div class="form-group">
+                    <label>Mật khẩu:</label>
+                    <input type="password" placeholder="Nhập mật khẩu...">
+                </div>
+                <div class="auth-buttons">
+                    <button class="btn-auth btn-blue" onclick="switchScreen('manChinh')">Đăng nhập</button>
+                    <button class="btn-auth btn-pink">Đăng kí</button>
+                </div>
+                <button class="btn-back" onclick="switchScreen('manBatsuDau')">⬅ Quay lại</button>
+            </div>
+            <p class="tip-text">💡 Mẹo: Đăng nhập để có thể chuyển đổi thiết bị</p>
+        </div>
+
+        <!-- 3. MÀN HÌNH CHÍNH (GAME BOARD) -->
+        <div class="game-screen" id="manChinh">
             <!-- Thanh HUD trên cùng -->
             <div class="hud-bar">
                 <span class="timer">⏳ 48:00:00</span>
                 <div class="hud-tools">
-                    <button onclick="togglePopup('popup-laptop')">💻</button>
-                    <button onclick="togglePopup('popup-evidence')">📁</button>
-                    <button onclick="togglePopup('popup-settings')">⚙️</button>
+                    <button title="Gợi ý">💡</button>
+                    <button title="Sổ tay">📖</button>
+                    <button title="Vật chứng">📁</button>
+                    <button title="Tạm dừng" onclick="togglePauseGame()">⏸</button>
+                    <button title="Cài đặt">⚙️</button>
                 </div>
             </div>
 
-            <!-- Khu vực tương tác chính -->
+            <!-- Khu vực tương tác chính (Bàn làm việc) -->
             <div class="board-content">
-                <div class="clue-card" onclick="togglePopup('popup-laptop')">
-                    <h3>Laptop cá nhân</h3>
-                    <p>Đang khóa mã hóa...</p>
+                <div class="laptop-view" onclick="togglePopup('popup-laptop')">
+                    <span>💻 Mở Laptop / Hồ sơ vụ án</span>
                 </div>
+                <div class="board-grid">
+                    <div class="slot-item" onclick="togglePopup('popup-evidence')">📁 Khay vật chứng</div>
+                    <div class="slot-item" onclick="togglePopup('popup-machine')">🎛 Máy Đối Chiếu</div>
+                </div>
+            </div>
+
+            <!-- Khung thoại (Dialogue Box) ở dưới cùng -->
+            <div class="dialogue-container" id="dialogue-box">
+                <p><strong>Thầy Minh:</strong> Nam? Em làm gì vậy? Thả thầy ra!</p>
             </div>
         </div>
 
-        <!-- POPUP: LAPTOP -->
+        <!-- POPUP: LAPTOP / HỒ SƠ -->
         <div class="popup-overlay" id="popup-laptop">
             <div class="popup-box">
                 <div class="popup-header">
-                    <h3>Hệ thống Laptop</h3>
+                    <h3>Hệ thống Laptop (4 Vụ Án)</h3>
                     <button class="btn-close" onclick="togglePopup('popup-laptop')">✕</button>
                 </div>
                 <div class="popup-body">
-                    <p>Nhập mật mã 4 chữ số hoặc giải mã các nốt nhạc để truy cập tài liệu.</p>
-                    <input type="password" placeholder="Nhập mật khẩu..." class="input-code">
-                    <button class="btn-primary">Xác nhận</button>
+                    <p>Chọn thư mục vụ án để đọc tài liệu:</p>
+                    <ul class="case-list">
+                        <li id="folder-v1">📁 Vụ 1: Vách Mây (Nốt Mi)</li>
+                        <li id="folder-v2" class="locked">🔒 Vụ 2: Cánh rừng (Nốt Sol)</li>
+                        <li id="folder-v3" class="locked">🔒 Vụ 3: Bến Đá (Nốt Đô)</li>
+                        <li id="folder-v4" class="locked">🔒 Vụ 4: Bác sĩ Đoàn (Nốt Rê)</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -61,24 +100,29 @@
         <div class="popup-overlay" id="popup-evidence">
             <div class="popup-box">
                 <div class="popup-header">
-                    <h3>Khay Vật Chứng</h3>
+                    <h3>Khay Vật Chứng Gốc</h3>
                     <button class="btn-close" onclick="togglePopup('popup-evidence')">✕</button>
                 </div>
                 <div class="popup-body">
-                    <p>Chưa thu thập được vật chứng nào.</p>
+                    <p>Chưa thu thập được vật chứng hoặc ngăn chưa mở.</p>
                 </div>
             </div>
         </div>
 
-        <!-- POPUP: CÀI ĐẶT -->
-        <div class="popup-overlay" id="popup-settings">
+        <!-- POPUP: MÁY ĐỐI CHIẾU TẦN SỐ -->
+        <div class="popup-overlay" id="popup-machine">
             <div class="popup-box">
                 <div class="popup-header">
-                    <h3>Cài đặt</h3>
-                    <button class="btn-close" onclick="togglePopup('popup-settings')">✕</button>
+                    <h3>Máy Đối Chiếu Tần Số</h3>
+                    <button class="btn-close" onclick="togglePopup('popup-machine')">✕</button>
                 </div>
                 <div class="popup-body">
-                    <p>Âm lượng nhạc nền: <input type="range" min="0" max="100" value="50"></p>
+                    <p>Nhập tần số (Hz) đã tính toán vào ô tương ứng:</p>
+                    <div class="machine-input-group">
+                        <label>Ô 1 (Vụ 1 - Mi):</label>
+                        <input type="number" id="freq-v1" placeholder="Nhập Hz..." class="input-code">
+                        <button class="btn-primary" onclick="checkFrequency('vui1', 'freq-v1')">Kiểm tra ô 1</button>
+                    </div>
                 </div>
             </div>
         </div>
