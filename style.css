@@ -210,3 +210,129 @@ body {
     color: white;
     font-size: 16px;
 }
+/* --- BỔ SUNG GIAO DIỆN THEO WIREFRAME --- */
+.btn-action, .btn-auth {
+    display: block;
+    width: 220px;
+    margin: 12px auto;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-green { background-color: #a7f3d0; color: #065f46; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.btn-blue { background-color: #60a5fa; color: white; }
+.btn-pink { background-color: #fbcfe8; color: #9d174d; }
+
+.tip-text {
+    text-align: center;
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 24px;
+    line-height: 1.5;
+}
+
+/* Form đăng nhập */
+.auth-box {
+    background: #a7f3d0;
+    padding: 24px;
+    border-radius: 16px;
+    width: 85%;
+    max-width: 320px;
+    margin: auto;
+    color: #0f172a;
+}
+
+.auth-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: white;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.btn-back {
+    background: none;
+    border: none;
+    color: #334155;
+    margin-top: 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Bàn làm việc màn hình chính */
+.laptop-view {
+    background: #334155;
+    height: 160px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px dashed #64748b;
+    margin-bottom: 16px;
+}
+
+.board-grid {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.slot-item {
+    flex: 1;
+    background: #334155;
+    height: 90px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 13px;
+    text-align: center;
+    padding: 8px;
+}
+
+/* Khung thoại dưới cùng */
+.dialogue-container {
+    background: #fdf6e2;
+    color: #1e293b;
+    border: 2px solid #3b82f6;
+    padding: 14px;
+    border-radius: 12px;
+    min-height: 80px;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.locked {
+    opacity: 0.5;
+}
