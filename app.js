@@ -7,10 +7,16 @@ const Game = {
   start() {
     document.getElementById('screen-title').classList.remove('active');
     document.getElementById('screen-game').classList.add('active');
+    document.getElementById('paused-screen').hidden = true;
+    this.paused = false;
     this.startTimer();
     Cutscene.startIntro();
   },
-
+togglePause() {
+    this.paused = !this.paused;
+    document.getElementById('paused-screen').hidden = !this.paused;
+    document.getElementById('btn-pause').textContent = this.paused ? "▶ Tiếp tục" : "⏸ Pause";
+  },
   startTimer() {
     if (this.timerInterval) clearInterval(this.timerInterval);
     this.timerInterval = setInterval(() => {
