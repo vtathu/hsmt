@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Hồ sơ mất tích: 4 nốt nhạc tử thần</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <!-- Khung chính giả lập màn hình điện thoại -->
+    <div class="phone-container">
+        
+        <!-- 1. MÀN HÌNH BẮT ĐẦU -->
+        <div class="game-screen active" id="screen-start">
+            <div class="hero-content">
+                <h1>HỒ SƠ MẤT TÍCH</h1>
+                <p class="subtitle">4 nốt nhạc tử thần</p>
+                <button class="btn-primary" onclick="switchScreen('screen-main')">BẮT ĐẦU</button>
+            </div>
+        </div>
+
+        <!-- 2. MÀN HÌNH CHÍNH (GAME BOARD) -->
+        <div class="game-screen" id="screen-main">
+            <!-- Thanh HUD trên cùng -->
+            <div class="hud-bar">
+                <span class="timer">⏳ 48:00:00</span>
+                <div class="hud-tools">
+                    <button onclick="togglePopup('popup-laptop')">💻</button>
+                    <button onclick="togglePopup('popup-evidence')">📁</button>
+                    <button onclick="togglePopup('popup-settings')">⚙️</button>
+                </div>
+            </div>
+
+            <!-- Khu vực tương tác chính -->
+            <div class="board-content">
+                <div class="clue-card" onclick="togglePopup('popup-laptop')">
+                    <h3>Laptop cá nhân</h3>
+                    <p>Đang khóa mã hóa...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- POPUP: LAPTOP -->
+        <div class="popup-overlay" id="popup-laptop">
+            <div class="popup-box">
+                <div class="popup-header">
+                    <h3>Hệ thống Laptop</h3>
+                    <button class="btn-close" onclick="togglePopup('popup-laptop')">✕</button>
+                </div>
+                <div class="popup-body">
+                    <p>Nhập mật mã 4 chữ số hoặc giải mã các nốt nhạc để truy cập tài liệu.</p>
+                    <input type="password" placeholder="Nhập mật khẩu..." class="input-code">
+                    <button class="btn-primary">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- POPUP: KHAY VẬT CHỨNG -->
+        <div class="popup-overlay" id="popup-evidence">
+            <div class="popup-box">
+                <div class="popup-header">
+                    <h3>Khay Vật Chứng</h3>
+                    <button class="btn-close" onclick="togglePopup('popup-evidence')">✕</button>
+                </div>
+                <div class="popup-body">
+                    <p>Chưa thu thập được vật chứng nào.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- POPUP: CÀI ĐẶT -->
+        <div class="popup-overlay" id="popup-settings">
+            <div class="popup-box">
+                <div class="popup-header">
+                    <h3>Cài đặt</h3>
+                    <button class="btn-close" onclick="togglePopup('popup-settings')">✕</button>
+                </div>
+                <div class="popup-body">
+                    <p>Âm lượng nhạc nền: <input type="range" min="0" max="100" value="50"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
